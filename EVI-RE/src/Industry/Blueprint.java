@@ -38,7 +38,6 @@ public enum MaterialEfficiency{
     MaterialEfficiency(String V){
         this.ME= new BigDecimal(V);
     }
-
 }
 
 public enum TimeEfficiency{
@@ -93,18 +92,13 @@ Activities[Integer.parseInt(tAct.get(i))]=new IndustryActivity( IndustryActivity
 
 
 
-public void set_ME(BigDecimal newME){
+public void set_ME_Multiplier(BigDecimal newME){
 ME_Level=new BigDecimal(100).subtract(newME).divide(new BigDecimal(100));
 }
 
-public void set_TE(BigDecimal newTE){ // LEVEL not Reduction in %
+public void set_TE_Multiplier(BigDecimal newTE){ // LEVEL not Reduction in %
 BigDecimal NTE=newTE.multiply(new BigDecimal(2));
 TE_Level=new BigDecimal(100).subtract(NTE).divide(new BigDecimal(100));
-}
-
-
-public void buildAtPOS(boolean pos){
-    
 }
 
 /**
