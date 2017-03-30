@@ -18,7 +18,6 @@ ItemWrapper[] Product=null;
 
 BigDecimal EstimatedBuildPrice=new BigDecimal(0);
 private static final SQL_StaticDataExport   Data        = new SQL_StaticDataExport();
-//private static       XML_EVEAPI             E_Api;
 private static       boolean                Verbose=false;
 
 
@@ -37,8 +36,8 @@ public Project(String BPName,int Qt,Industry.IndustryActivity.Activity Activity,
         }
     }
     this.ProjectDesc = Activity.name()+" "+BPName+" x "+Qt;
-    BP.set_ME(ME.ME);
-    BP.set_TE(TE.TE);
+    BP.set_ME_Multiplier(ME.ME);
+    BP.set_TE_Multiplier(TE.TE);
     Product = new ItemWrapper[BP.getProduct(Activity.ActivityID).size()];
     for(int i=0;i<=BP.getProduct(Activity.ActivityID).size()-1;i++){
         Product[i] = new ItemWrapper(BP.getProduct(Activity.ActivityID).get(i).typeID);
@@ -140,5 +139,26 @@ private Exception NoInvention(Blueprint BP){
     return null;
 }
 
+public enum Invention{
+    Invention(0,2,4,new BigDecimal("1")),
+    Accelerant(1,2,10,new BigDecimal("1.2")),
+    Attainment(4,-1,4,new BigDecimal("1.8")),
+    Augmentation(9,-2,2,new BigDecimal("0.6")),
+    Parity(3,1,-2,new BigDecimal("1.5")),
+    Process(0,3,6,new BigDecimal("1.1")),
+    Symmetry(2,1,8,new BigDecimal("1")),
+    OptimizedAttainment(2,1,-2,new BigDecimal("1.9")),
+    OptimizedAugmentation(7,2,0,new BigDecimal("0.9"));
+    public final int AdditionalRuns;
+    public final int ME_Modifier;
+    public final int TE_Modifier;
+    public final BigDecimal ChanceMod;
+    Invention(int run,int me,int te, BigDecimal Chance){
+        this.AdditionalRuns=run;
+        this.ME_Modifier=me;
+        this.TE_Modifier=te;
+        this.ChanceMod=Chance;
+    }
+}
 
 }
