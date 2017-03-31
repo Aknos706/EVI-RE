@@ -10,4 +10,8 @@ abstract class Wrapper_Base {
         this.typeID=I;
         this.Name=DATA.typeID_to_typeName(I);
     }
+    protected Wrapper_Base(String S){
+        this.Name=S;
+        this.typeID=DATA.typeName_to_typeID(Name);
+    }
 }
