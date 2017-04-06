@@ -40,7 +40,7 @@ public Project(String BPName,int Qt,Industry.IndustryActivity.Activity Activity,
     BP.set_TE_Multiplier(TE.TE);
     Product = new ItemWrapper[BP.getProduct(Activity.ActivityID).size()];
     for(int i=0;i<=BP.getProduct(Activity.ActivityID).size()-1;i++){
-        Product[i] = new ItemWrapper(BP.getProduct(Activity.ActivityID).get(i).typeID);
+        Product[i] = new ItemWrapper(BP.getProduct(Activity.ActivityID).get(i).typeID,1);
     }
     Materials=getMaterials(Activity.ActivityID,Qt);
     addSubProjects(Activity);
@@ -108,7 +108,7 @@ private HashMap<Integer,ItemWrapper> combineMaps(HashMap<Integer,ItemWrapper> Ma
     for (int i=0;i<=KeysMap2.size()-1;i++){
         if(Map1.containsKey(KeysMap2.get(i))){
             ItemWrapper Temp = Map1.get(KeysMap2.get(i));
-            Temp.addQuantity(Map2.get(KeysMap2.get(i)).Quantity);
+            Temp.Quantity = Temp.Quantity + Map2.get(KeysMap2.get(i)).Quantity;
             Map1.put(Temp.typeID, Temp);
         }else{
             Map1.put(KeysMap2.get(i),Map2.get(KeysMap2.get(i)));
