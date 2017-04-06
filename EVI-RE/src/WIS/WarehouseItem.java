@@ -2,17 +2,34 @@ package WIS;
 
 import java.math.BigDecimal;
 
-public class WarehouseItem {
+public class WarehouseItem extends util.ItemWrapper{
 
-public int typeID;
-//public String typeName;
-public BigDecimal Value;
-public int amount;
+public BigDecimal perItemValue;
+public BigDecimal totalItemValue;
 
 public WarehouseItem(int tid, BigDecimal v,int m){
-    this.Value=v;
-    this.typeID=tid;
-    this.amount=m;
+    super(tid,m);
+    this.perItemValue=v;
+    this.totalItemValue=v;
 }
-    
+
+public void Info(){
+    System.out.println("Total Quantity of the Stockpile is "+this.Quantity);
+    System.out.println("Total Value of the Stockpile is "+this.totalItemValue);
+    System.out.println("Value per Object now is "+this.perItemValue);
+}
+
+public void addQuantity(int q,BigDecimal v){
+    this.Quantity = this.Quantity + q;
+    BigDecimal valueToBeAdded = new BigDecimal(q).multiply(v);
+    this.totalItemValue = this.totalItemValue.add(valueToBeAdded);
+    this.perItemValue = this.totalItemValue.divide(new BigDecimal(this.Quantity));
+    System.out.println("Added "+q+" of "+this.typeName+" to Stockpile");
+}
+
+public void subtractQuantity(int q){
+    this.Quantity = this.Quantity - q;
+}
+        
+
 }
