@@ -6,11 +6,4 @@ public class ItemWrapper extends Wrapper_Base{
         super(id);
         Quantity=qt;
     }
-    public ItemWrapper(int id){
-        super(id);
-        Quantity=1;
-    }
-    public void addQuantity(int Qt) {
-        Quantity+=Qt; // old + new
-    }
 }
