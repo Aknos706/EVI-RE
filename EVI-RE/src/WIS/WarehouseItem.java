@@ -7,8 +7,8 @@ public class WarehouseItem extends util.ItemWrapper{
 public BigDecimal perItemValue;
 public BigDecimal totalItemValue;
 
-public WarehouseItem(int tid, BigDecimal v,int m){
-    super(tid,m);
+public WarehouseItem(int tid,int q,BigDecimal v){
+    super(tid,q);
     this.perItemValue=v;
     this.totalItemValue=v;
 }
