@@ -27,8 +27,12 @@ public void addQuantity(int q,BigDecimal v){
     System.out.println("Added "+q+" of "+this.typeName+" to Stockpile");
 }
 
-public void subtractQuantity(int q){
-    this.Quantity = this.Quantity - q;
+public void subtractQuantity(int q) throws WIS.WarehouseExceptions.NotEnoughItems{
+    if (q<=this.Quantity){
+        this.Quantity = this.Quantity - q;
+    }else{
+        throw new WIS.WarehouseExceptions.NotEnoughItems();
+    }
 }
         
 
