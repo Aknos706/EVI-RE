@@ -7,6 +7,7 @@ import util.SkillWrapper;
 import java.util.LinkedList;
 import java.io.File;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.math.RoundingMode;
 
 
@@ -16,9 +17,8 @@ int groupID;
 String Name;
 File Image;
 boolean Public;
-BigDecimal ME_Level= new BigDecimal(1);
-BigDecimal TE_Level= new BigDecimal(1);
-boolean POS=false;
+BigDecimal ME_Level= new BigDecimal(0);
+BigDecimal TE_Level= new BigDecimal(0);
 protected static SQL_StaticDataExport DATA = new SQL_StaticDataExport();
 
 private final IndustryActivity[] Activities = new IndustryActivity[9];
@@ -114,10 +114,10 @@ for (int i=0;i<=Activities[Act].Matlist.size()-1;i++){
 //int t=Activities[Act].Matlist.get(i)[0]; // gets TypeID
 int t=Activities[Act].Matlist.get(i).typeID;
 
-int temp=Activities[Act].Matlist.get(i).Quantity;
+BigInteger temp=Activities[Act].Matlist.get(i).Quantity;
 BigDecimal Mat= new BigDecimal(temp).multiply(new BigDecimal(Quantity)).multiply(ME_Level).setScale(0, RoundingMode.CEILING);
 
-R.add(new ItemWrapper(t,Mat.intValue()));
+R.add(new ItemWrapper(t,Mat.toBigInteger()));
 }
    
 return R;
